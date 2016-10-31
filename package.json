@@ -1,0 +1,27 @@
+{
+  "name": "pk-pass-display",
+  "version": "1.0.0",
+  "description": "PassKit pass display angular plugin",
+  "main": "dist/pk-pass-display.js",
+  "scripts": {},
+  "author": "PassKit",
+  "repository": {},
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-angular-embed-templates": "^2.3.0",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-gzip": "^1.4.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0"
+  }
+}

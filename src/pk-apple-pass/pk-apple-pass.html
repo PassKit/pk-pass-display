@@ -1,0 +1,175 @@
+<style type="text/css">
+#appleDisplay.pass .content .pass-value {color: {{$ctrl.passData.foregroundColor}} }
+#appleDisplay.pass .content .pass-value:after {content: ''; color: {{$ctrl.passData.foregroundColor}} }
+#appleDisplay.pass .content .pass-label {color: {{$ctrl.passData.labelColor}} }
+#appleDisplay.pass .content {background-color: {{$ctrl.passData.backgroundColor}} }
+#appleDisplay .boardingIcon path {fill: {{$ctrl.passData.labelColor}} }
+#appleDisplay .primary-strip-img.show-img {background-image: url({{ $ctrl.images.strip || $ctrl.selectedLanguage.images.strip }}) }
+</style>
+<style type="text/css" ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat">#appleDisplay.pass .content.show-img {background-image: url('{{ $ctrl.images.background || $ctrl.selectedLanguage.images.background }}'); background-size:cover;}</style>
+<div id="appleDisplay" data-ng-class="{flipped: displayMode == 'back'}" ng-if="$ctrl.display.wallet == 'appleWallet'" class="flip-card pass pass-{{$ctrl.display.type}}">
+<div ng-class="{'show-img': $ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat}" class="content">
+    <div ng-class="{displayHide:flip}" class="flip-front">
+    <div class="front">
+        <div class="not-blurred">
+        <!--Header Section, same for all pass types: Logo Image, Logo Text, Header Fields-->
+        <header>
+            <div class="row">
+            <!--Logo Image + Logo Text-->
+            <div data-ng-class="{'col-xs-10': $ctrl.fields.headerFields.length &lt; 2, 'col-xs-8': $ctrl.fields.headerFields.length == 2, 'col-xs-6': $ctrl.fields.headerFields.length == 3}" class="logo">
+                <div class="image">
+                <div class="image-wrapper"><img data-ng-src="{{ $ctrl.images.logo || $ctrl.selectedLanguage.images.logo }}"/></div>
+                </div>
+                <div class="logoText pass-value">{{$ctrl.passData.logoText}}</div>
+            </div>
+            <!--Header Fields-->
+            <div data-ng-class="{'col-xs-2': $ctrl.fields.headerFields.length &lt; 2, 'col-xs-4': $ctrl.fields.headerFields.length  == 2, 'col-xs-6': $ctrl.fields.headerFields.length  == 3}">
+                <div class="row">
+                <div data-apple-pass-field-group="$ctrl.fields.headerFields" data-type="'header'" lang="$ctrl.selectedLanguage" class="text-right"></div>
+                </div>
+            </div>
+            </div>
+        </header>
+        <!--Primary Section, five styles:-->
+        <!--  Transport: Primary Field 1, Transport Icon, Primary Field 2-->
+        <!--  Coupon, Store Card: Primary Field 1 over the top of a *thicker* Strip Image-->
+        <!--  Event Tickets with a strip image: Primary Field 1 over the top of a *thinner* Strip Image-->
+        <!--  Event Ticket with a background image: 2Rows(row 1: primary fields, row 2: secondary fields), Thumbnail image-->
+        <!--  Generic: Primary Field 1, Thumbnail Image-->
+        <!--Might want to come up with a nicer way to do this (maybe use a function to alter a scope variable using a switch)-->
+        <div data-ng-class="{'show-img primary-strip-img normal': $ctrl.display.type == 'coupon' || $ctrl.display.type == 'storeCard', 'show-img primary-strip-img event': ($ctrl.display.type == 'eventTicket' &amp;&amp; $ctrl.eventIsStripFormat)}">
+            <!--Transport-->
+            <div data-ng-if="$ctrl.display.type == 'boardingPass'" class="primary row primary-boarding">
+            <div class="col-xs-5">
+                <div data-apple-pass-field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            <div class="col-xs-2 text-center pass-label"><i class="fa fa-3x fa-fw {{ $ctrl.transitType }}"></i></div>
+            <div class="col-xs-5 text-right">
+                <div data-apple-pass-field="$ctrl.fields.primaryFields[1]" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            </div>
+            <!--Coupon, Store Card-->
+            <div data-ng-if="$ctrl.display.type == 'coupon' || $ctrl.display.type == 'storeCard'" class="primary row primary-strip">
+            <div data-apple-pass-field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            <!--Event Tickets with a strip image (text needs to be smaller than above due to thinner strip image)-->
+            <div data-ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; $ctrl.eventIsStripFormat" class="primary row primary-strip">
+            <div data-apple-pass-field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            <!--Event Ticket with a background image-->
+            <div data-ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat" class="primary row">
+            <div class="col-xs-9">
+                <div class="primary row">
+                <div data-apple-pass-field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></div>
+                </div>
+                <div class="secondary row">
+                <div data-apple-pass-field-group="$ctrl.fields.secondaryFields" lang="$ctrl.selectedLanguage"></div>
+                </div>
+            </div>
+            <div class="col-xs-3"><img data-ng-src="{{ $ctrl.images.thumbnail || $ctrl.selectedLanguage.images.thumbnail }}"/></div>
+            </div>
+            <!--Generic-->
+            <div data-ng-if="$ctrl.display.type == 'generic'" class="primary row">
+            <div data-ng-if="$ctrl.images.thumbnail || $ctrl.selectedLanguage.images.thumbnail">
+                <div class="col-xs-8">
+                <div data-apple-pass-field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></div>
+                </div>
+                <div class="col-xs-4"><img data-ng-src="{{ $ctrl.images.thumbnail || $ctrl.selectedLanguage.images.thumbnail }}"/></div>
+            </div>
+            <div data-ng-if="!($ctrl.images.thumbnail || $ctrl.selectedLanguage.images.thumbnail)">
+                <div class="col-xs-12">
+                <div data-apple-pass-field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--Extra Fields Section, four styles:-->
+        <!--  Transport: Auxiliary fields then Secondary Fields (just to be contrary)-->
+        <!--  Coupon, Store Card, Generic Pass with Square Barcode: Auxiliary and Secondary fields merged-->
+        <!--  Event Tickets with a strip image, Generic Pass with Rectangular Barcode: Secondary fields then Auxiliary Fields-->
+        <!--  Event Ticket with a background image: Only the Auxiliary Fields (secondary fields are already in the primary section)-->
+        <div class="extra-fields">
+            <!--Transport-->
+            <div data-ng-if="$ctrl.display.type == 'boardingPass'">
+            <div class="auxiliary row">
+                <div data-apple-pass-field-group="$ctrl.fields.auxiliaryFields" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            <div class="secondary row">
+                <div data-apple-pass-field-group="$ctrl.fields.secondaryFields" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            </div>
+            <!--Coupon, Store Card, Generic Pass with Square Barcode-->
+            <div data-ng-if="$ctrl.display.type == 'coupon' || $ctrl.display.type == 'storeCard' || ($ctrl.display.type == 'generic' &amp;&amp; $ctrl.barcodeIsSquare())">
+            <div class="auxiliary secondary row">
+                <div data-apple-pass-field-group="$ctrl.mergedAuxSecFields" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            </div>
+            <!--Event Tickets with a strip image, Generic Pass with Rectangular Barcode-->
+            <div data-ng-if="($ctrl.display.type == 'eventTicket' &amp;&amp; $ctrl.eventIsStripFormat) || ($ctrl.display.type == 'generic' &amp;&amp; !$ctrl.barcodeIsSquare())">
+            <div class="secondary row">
+                <div data-apple-pass-field-group="$ctrl.fields.secondaryFields" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            <div class="auxiliary row">
+                <div data-apple-pass-field-group="$ctrl.fields.auxiliaryFields" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            </div>
+            <!--Coupon, Store Card, Generic Pass with Square Barcode-->
+            <div data-ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat">
+            <div class="auxiliary secondary row">
+                <div data-apple-pass-field-group="$ctrl.fields.auxiliaryFields" lang="$ctrl.selectedLanguage"></div>
+            </div>
+            </div>
+        </div>
+        <!--Footer image for transport pass-->
+        <footer data-ng-if="$ctrl.display.type == 'boardingPass'">
+            <div class="image">
+            <image data-ng-src="{{ $ctrl.images.footer || $ctrl.selectedLanguage.images.footer }}"></image>
+            </div>
+        </footer>
+        <!--Barcode Section... Actually pretty straightforward-->
+        <div class="barcode-section">
+            <div ng-class="{expired:$ctrl.passIsExpired}" data-ng-if="$ctrl.barcode">
+            <div data-ng-if="!$ctrl.barcodeIsSquare()" class="row barcodeRow">
+                <div class="col-xs-1"></div>
+                <div data-ng-if="!$ctrl.noAppleBarcode" class="col-xs-10 barcodeContainer"><img ng-src="https://d1ye292yvr7tf6.cloudfront.net/images/barcode.php?m={{$ctrl.barcode.message}}&amp;f={{$ctrl.barcode.format}}&amp;e=UTF-8&amp;x2=1" class="barcode rect"/>
+                <div ng-show="!$ctrl.passIsExpired" class="text text-center">{{ $ctrl.barcode.altText }}</div>
+                <div ng-show="$ctrl.passIsExpired" class="text text-center text-muted">this pass has expired</div>
+                <div ng-if="!$ctrl.barcode.altText &amp;&amp; !$ctrl.passIsExpired" class="paddingInsteadOfAltText"></div>
+                </div>
+                <button ng-click="$ctrl.flipPass()" class="btn btn-default col-xs-1 info-button">i</button>
+            </div>
+            <div data-ng-if="$ctrl.barcodeIsSquare()" class="row barcodeRow">
+                <div class="col-xs-3"></div>
+                <div data-ng-if="!$ctrl.noAppleBarcode" class="col-xs-6 barcodeContainer"><img ng-src="https://d1ye292yvr7tf6.cloudfront.net/images/barcode.php?m={{$ctrl.barcode.message}}&amp;f={{$ctrl.barcode.format}}&amp;e=UTF-8&amp;x2=1" class="barcode square"/>
+                <div ng-show="!$ctrl.passIsExpired" class="text text-center">{{ $ctrl.barcode.altText }}</div>
+                <div ng-show="$ctrl.passIsExpired" class="text text-center text-muted">this pass has expired</div>
+                <div ng-if="!$ctrl.barcode.altText &amp;&amp; !$ctrl.passIsExpired" class="paddingInsteadOfAltText"></div>
+                </div>
+                <div class="col-xs-3"></div>
+                <button ng-click="$ctrl.flipPass()" class="btn btn-default col-xs-1 info-button">i</button>
+            </div>
+            </div>
+            <div data-ng-if="!$ctrl.barcode" class="no-print">
+            <div data-ng-if="!$ctrl.barcodeIsSquare()" class="row barcodeRow">
+                <div class="col-xs-11"></div>
+                <button ng-click="$ctrl.flipPass()" class="btn btn-default col-xs-1 info-button">i</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div ng-class="{displayHide:!flip}" class="flip-back">
+    <div class="back">
+        <div class="row header">
+        <button ng-click="$ctrl.flipPass()" translate="" class="btn btn-default col-xs-3 pull-right">Done</button>
+        </div>
+        <div class="content-inner">
+        <div data-ng-repeat="field in $ctrl.fields.backFields" class="back-field row">
+            <div data-apple-pass-field="field" lang="$ctrl.selectedLanguage" class="col-xs-12"></div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
