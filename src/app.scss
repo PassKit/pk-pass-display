@@ -9,6 +9,7 @@ $applePassWidth: 270px;
 
 pk-apple-pass {
     display: block;
+    text-align: initial;
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
     @import "../node_modules/bootstrap/dist/css/bootstrap.css";
     @import "pk-apple-pass/_pk-apple-pass";
