@@ -8,8 +8,8 @@ Include in your index file:
 Include in angular app:
     var app = angular.module("myApp", ["pk-pass-display"]); 
 
-Use as directive:
-    <div pk-pass-display="passId"></div>
+Use as component (see index.html for example):
+    <pk-pass-display pass-id="passId"></pk-pass-display>
 
 ##Development
 (Requires Node.js https://nodejs.org)

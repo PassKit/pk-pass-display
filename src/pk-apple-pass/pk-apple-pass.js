@@ -5,6 +5,7 @@
         bindings: {
             passId: '@',
             language: '@',
+            bgColour: '@',
             onError: '&'
         }
     });
@@ -15,10 +16,10 @@
         ctrl.$onChanges = onChanges;
 
         function onChanges(changesObj) {
-            if (changesObj.hasOwnProperty("passId")) {
+            if (changesObj.hasOwnProperty("passId") && ctrl.passId != undefined) {
                 getPass(ctrl.passId);
             }
-            if (changesObj.hasOwnProperty("language")) {
+            if (changesObj.hasOwnProperty("language") && ctrl.language != undefined) {
                 selectLanguage(ctrl.language);
             }
         }
@@ -49,7 +50,7 @@
                 method: 'GET',
                 url: "https://api-pass.passkit.net/v2/passes/"+passId+"/json"
             }).then(function (response) {
-                var pass = response.data.pass;
+                var pass = response.data;
                 original = pass;
                 if (pass.hasOwnProperty("appleWallet")) {
                     ctrl.display.wallet = "appleWallet";
@@ -133,6 +134,9 @@
         }
 
         function selectLanguage(lang) {
+            if (lang === undefined || typeof ctrl.language !== "string" || lang == "") {
+                lang = original[ctrl.display.wallet].defaultLang;
+            }
             ctrl.fields = JSON.parse(JSON.stringify(original[ctrl.display.wallet].data[original[ctrl.display.wallet].passType]));
             mergeAuxSecFields(ctrl.fields);
             if (original[ctrl.display.wallet].locales.hasOwnProperty(lang)) {
