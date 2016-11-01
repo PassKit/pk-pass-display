@@ -27,7 +27,7 @@
             overflow-y: visible !important;
             border:none !important;
         }
-        .front header {
+        .front .pass-header {
             margin-bottom:0px !important;
         }
         .front, .back, .back-field, .content-inner {
@@ -299,7 +299,7 @@
             font-size: 12px;
             font-weight: 600;
         }
-        header {
+        .pass-header {
             margin-bottom: 15px;
             .image {
                 float: left;

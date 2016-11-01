@@ -8,8 +8,8 @@
 
     #appleDisplay.pass-eventTicket .content:before{background: {{ $ctrl.bgColor || "#fff"}};}
     .content:before, .content:after {background: linear-gradient(-45deg, transparent 10px, {{ $ctrl.bgColor || "#fff"}} 0), linear-gradient(45deg, transparent 10px, {{ $ctrl.bgColor || "#fff"}} 0);}
-    #appleDisplay.pass-boardingPass header {position: relative;}
-    #appleDisplay.pass-boardingPass header:before, #appleDisplay.pass-boardingPass header:after{
+    #appleDisplay.pass-boardingPass .pass-header {position: relative;}
+    #appleDisplay.pass-boardingPass .pass-header:before, #appleDisplay.pass-boardingPass .pass-header:after{
         content: " ";
         background-color: {{ $ctrl.bgColor || "#fff"}};
         height: 10px;
@@ -18,8 +18,8 @@
         bottom: -10px;
         border-radius: 100%;
     }
-    #appleDisplay.pass-boardingPass header:before{left: -15px;right: auto;}
-    #appleDisplay.pass-boardingPass header:after{left: auto;right: -15px;}
+    #appleDisplay.pass-boardingPass .pass-header:before{left: -15px;right: auto;}
+    #appleDisplay.pass-boardingPass .pass-header:after{left: auto;right: -15px;}
 </style>
 <style type="text/css" ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat">#appleDisplay.pass .content.show-img {background-image: url('{{ $ctrl.images.background || $ctrl.selectedLanguage.images.background }}');background-size:cover;}</style>
 <div id="appleDisplay" data-ng-class="{flipped: displayMode == 'back'}" ng-if="$ctrl.display.wallet == 'appleWallet'" class="pass pass-{{$ctrl.display.type}}">
@@ -28,7 +28,7 @@
             <div class="front">
                 <div class="not-blurred">
                     <!--Header Section, same for all pass types: Logo Image, Logo Text, Header Fields-->
-                    <header>
+                    <div class="pass-header">
                         <div class="row">
                             <!--Logo Image + Logo Text-->
                             <div data-ng-class="{'col-xs-10': $ctrl.fields.headerFields.length &lt; 2, 'col-xs-8': $ctrl.fields.headerFields.length == 2, 'col-xs-6': $ctrl.fields.headerFields.length == 3}" class="logo">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                    </header>
+                    </div>
                     <!--Primary Section, five styles:-->
                     <!--  Transport: Primary Field 1, Transport Icon, Primary Field 2-->
                     <!--  Coupon, Store Card: Primary Field 1 over the top of a *thicker* Strip Image-->
