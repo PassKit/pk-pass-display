@@ -1,58 +1,184 @@
-img {
-    max-width:100%;
-}
+#appleDisplay{
+    width: $applePassWidth;
+    margin: auto;
+    perspective: 600px;
 
-@media print {
-    width: 100% !important;
-    .displayHide {
-        display: block !important;
+    a {
+        cursor: pointer;
     }
-    .content-inner {
-        overflow-y: visible !important;
-        border:none !important;
-    }
-    .front header {
-        margin-bottom:0px !important;
-    }
-    .front, .back, .back-field, .content-inner {
-        margin:0px !important;
-        padding:0px !important;
-        height:auto !important;
-    }
-    .field {
-        padding-top:5px !important;
-        width:100% !important;
-        label {
-            width:20% !important;
-            font-weight:500 !important;
-        }
-        span {
-            width:80% !important;
-            font-weight:400 !important;
-        }
-        label, span{
-            float:left !important;
-            font-size:small !important;
-            text-overflow: initial !important;
-            white-space: normal !important;
-            overflow: initial !important;
+    @media print {
+        .no-print {
+            display:none !important;
         }
     }
-    .barcode-section{
-        .barcodeRow {
-            position:relative !important;
-            /*
-            .barcode.square {
-                height:300px;
-                width:auto;
+    .row {
+        margin:0 !important;
+    }
+    img {
+        max-width:100%;
+    }
+
+    @media print {
+        width: 100% !important;
+        .displayHide {
+            display: block !important;
+        }
+        .content-inner {
+            overflow-y: visible !important;
+            border:none !important;
+        }
+        .front header {
+            margin-bottom:0px !important;
+        }
+        .front, .back, .back-field, .content-inner {
+            margin:0px !important;
+            padding:0px !important;
+            height:auto !important;
+        }
+        .field {
+            padding-top:5px !important;
+            width:100% !important;
+            label {
+                width:20% !important;
+                font-weight:500 !important;
             }
-            .barcode.rect {
-                height:auto;
-                width:500px;
+            span {
+                width:80% !important;
+                font-weight:400 !important;
             }
-            */
+            label, span{
+                float:left !important;
+                font-size:small !important;
+                text-overflow: initial !important;
+                white-space: normal !important;
+                overflow: initial !important;
+            }
+        }
+        .barcode-section{
+            .barcodeRow {
+                position:relative !important;
+                /*
+                .barcode.square {
+                    height:300px;
+                    width:auto;
+                }
+                .barcode.rect {
+                    height:auto;
+                    width:500px;
+                }
+                */
+            }
+        }
+        .col-xs-1,
+        .col-xs-2,
+        .col-xs-3,
+        .col-xs-4,
+        .col-xs-5,
+        .col-xs-6,
+        .col-xs-7,
+        .col-xs-8,
+        .col-xs-9,
+        .col-xs-10,
+        .col-xs-11,
+        .col-xs-12,
+        .field-group {
+            width:100% !important;
+        }
+        .text-right, .text-center, label, span{
+            text-align:left !important;
+        }
+        
+        button, .primary-strip-img {
+            display:none !important;
         }
     }
+    .paddingInsteadOfAltText{
+        margin-top:6px;
+    }
+    @media screen {
+        .displayHide {
+            display:none !important;
+        }
+    }
+    .content{
+        border-radius: 5px;
+    }
+    &.pass-boardingPass {
+        .content {
+            background-image: none !important;
+        }
+    }
+    &.pass-eventTicket {
+        .content {
+            z-index: 1;
+        }
+        .content:after {
+            z-index: -1;
+            content: ' ';
+            display: block;
+            width: 100%;
+            height: 100%;
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+            background-image: inherit;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+        }
+        .content {
+            border-radius: 0;
+            &:before {
+                position: absolute;
+                top: -35px;
+                left: 50%;
+                content: ' ';
+                width: 50px;
+                height: 50px;
+                margin-left: -25px;
+                border-bottom-left-radius: 50%;
+                border-bottom-right-radius: 50%;
+            }
+        }
+    }
+    &.pass-storeCard {
+        .content {
+            background-image: none !important;
+        }
+    }
+    &.pass-membership {
+        .content {
+            background-image: none !important;
+        }
+    }
+    &.pass-coupon {
+        .content {
+            border-radius: 0;
+            background-image: none !important;
+        }
+        .content:before,
+        .content:after {
+            background-position: left bottom;
+            background-repeat: repeat-x;
+            background-size: 10px 10px;
+            content: " ";
+            display: block;
+            position: absolute;
+            top: -5px;
+            left: 0px;
+            width: 100%;
+            height: 15px;
+        }
+        .content:after {
+            transform: rotateX(180deg);
+            top: auto;
+            bottom: -5px;
+        }
+    }
+    // Override bootstrap for the pass designer.
+    .row,
     .col-xs-1,
     .col-xs-2,
     .col-xs-3,
@@ -64,385 +190,259 @@ img {
     .col-xs-9,
     .col-xs-10,
     .col-xs-11,
-    .col-xs-12,
-    .field-group {
-        width:100% !important;
+    .col-xs-12 {
+        padding: 0;
+        margin: 0;
     }
-    .text-right, .text-center, label, span{
-        text-align:left !important;
-    }
-    
-    button, .primary-strip-img {
-        display:none !important;
-    }
-}
-.paddingInsteadOfAltText{
-    margin-top:6px;
-}
-@media screen {
-    .displayHide {
-        display:none !important;
-    }
-}
-.content{
-    border-radius: 5px;
-}
-&.pass-boardingPass {
-    .content {
-        background-image: none !important;
-    }
-}
-&.pass-eventTicket {
-    .content {
-        z-index: 1;
-    }
-    .content:after {
-        z-index: -1;
-        content: ' ';
-        display: block;
-        width: 100%;
-        height: 100%;
-        filter: blur(5px);
-        -webkit-filter: blur(5px);
-        background-image: inherit;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-        position: absolute;
-        background-size: cover;
-        background-position: center;
-    }
-    .content {
-        border-radius: 0;
-        &:before {
-            position: absolute;
-            top: -35px;
-            left: 50%;
-            content: ' ';
-            width: 50px;
-            height: 50px;
-            margin-left: -25px;
-            border-bottom-left-radius: 50%;
-            border-bottom-right-radius: 50%;
-        }
-    }
-}
-&.pass-storeCard {
-    .content {
-        background-image: none !important;
-    }
-}
-&.pass-membership {
-    .content {
-        background-image: none !important;
-    }
-}
-&.pass-coupon {
-    .content {
-        border-radius: 0;
-        background-image: none !important;
-    }
-    .content:before,
-    .content:after {
-        background-position: left bottom;
-        background-repeat: repeat-x;
-        background-size: 10px 10px;
-        content: " ";
-        display: block;
-        position: absolute;
-        top: -5px;
-        left: 0px;
-        width: 100%;
-        height: 15px;
-    }
-    .content:after {
-        transform: rotateX(180deg);
-        top: auto;
-        bottom: -5px;
-    }
-}
-// Override bootstrap for the pass designer.
-.row,
-.col-xs-1,
-.col-xs-2,
-.col-xs-3,
-.col-xs-4,
-.col-xs-5,
-.col-xs-6,
-.col-xs-7,
-.col-xs-8,
-.col-xs-9,
-.col-xs-10,
-.col-xs-11,
-.col-xs-12 {
-    padding: 0;
-    margin: 0;
-}
-.content .back {
-    // background: $very-light-grey;
-    border-radius: 5px;
-    margin: 20px 0px 20px 0px;
-    padding: 10px;
-    height: $applePassHeight;
-    font-size: 13px;
-    .content-inner {
-        background: $very-light-grey;
-        border: 1px solid darken($very-light-grey, 10%);
+    .content .back {
+        // background: $very-light-grey;
         border-radius: 5px;
-        margin: 5px -5px;
-        overflow-y: scroll;
-        height: calc(#{$applePassHeight} - 40px);
-    }
-    .app {
-        background: white;
+        margin: 20px 0px 20px 0px;
         padding: 10px;
-        font-size: 10px;
-        img {
-            max-width: 36px;
-            height: auto;
-            margin-right: 12px;
-        }
-        .info {
-            width: 135px;
-        }
-        .change {
-            cursor: pointer;
-            color: $light-blue;
-            line-height: 40px;
-            font-size: 12px;
-        }
-    }
-    .row.mock-ios {
-        background: white;
-        padding: 10px;
-    }
-    hr {
-        margin-top: 30px;
-        margin-bottom: -10px;
-    }
-    p {
-        margin: 0;
-    }
-    .spacer {
-        padding: 5px 10px 20px 5px;
-        border-top: 1px solid darken($very-light-grey, 10%);
-        border-bottom: 1px solid darken($very-light-grey, 10%);
-    }
-    .back-field {
-        background: white;
-        padding: 10px;
-        &:hover {
-            background: #FFF9E6;
-        }
-        .pass-label {
-            display: block;
-            font-size: 10px;
-            color: $base-color-chrome !important;
-        }
-        .pass-value {
-            color: $base-color-chrome !important;
-            font-size: 12px;
-        }
-        &:last-child {
-            hr {
-                display: none;
-            }
-        }
-    }
-}
-.content .front {
-    margin: 20px 0px 20px 0px;
-    position: relative;
-    height: $applePassHeight;
-    padding: 10px;
-    border-radius: 5px;
-    background-size: cover;
-    .field-group {
-        float:left;
-    }
-    .field {
-        .field-wrapper, .field-wrapper > * {
-            display: block;
-            max-width: 100%;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-    }
-    .pass-label {
-        font-size: 10px;
-        font-weight: 500;
-        display: block;
-        margin: 0;
-        line-height: 12px;
-    }
-    .pass-value {
+        height: $applePassHeight;
         font-size: 13px;
-    }
-    .logo-text {
-        font-size: 12px;
-        font-weight: 600;
-    }
-    header {
-        margin-bottom: 15px;
-        .image {
-            float: left;
-            display: block;
-            margin-right: 10px;
+        .content-inner {
+            background: $very-light-grey;
+            border: 1px solid darken($very-light-grey, 10%);
+            border-radius: 5px;
+            margin: 5px -5px;
+            overflow-y: scroll;
+            height: calc(#{$applePassHeight} - 40px);
+        }
+        .app {
+            background: white;
+            padding: 10px;
+            font-size: 10px;
             img {
-                height: 43px;
-                width: auto;
+                max-width: 36px;
+                height: auto;
+                margin-right: 12px;
+            }
+            .info {
+                width: 135px;
+            }
+            .change {
+                cursor: pointer;
+                color: $light-blue;
+                line-height: 40px;
+                font-size: 12px;
             }
         }
-        .logo .pass-value {
-            display: block;
-            min-height: 43px;
-            line-height: 43px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            font-size: 18px;
+        .row.mock-ios {
+            background: white;
+            padding: 10px;
+        }
+        hr {
+            margin-top: 30px;
+            margin-bottom: -10px;
+        }
+        p {
+            margin: 0;
+        }
+        .spacer {
+            padding: 5px 10px 20px 5px;
+            border-top: 1px solid darken($very-light-grey, 10%);
+            border-bottom: 1px solid darken($very-light-grey, 10%);
+        }
+        .back-field {
+            background: white;
+            padding: 10px;
+            &:hover {
+                background: #FFF9E6;
+            }
+            .pass-label {
+                display: block;
+                font-size: 10px;
+                color: $base-color-chrome !important;
+            }
+            .pass-value {
+                color: $base-color-chrome !important;
+                font-size: 12px;
+            }
+            &:last-child {
+                hr {
+                    display: none;
+                }
+            }
+        }
+    }
+    .content .front {
+        margin: 20px 0px 20px 0px;
+        position: relative;
+        height: $applePassHeight;
+        padding: 10px;
+        border-radius: 5px;
+        background-size: cover;
+        .field-group {
+            float:left;
         }
         .field {
-            span {
-                font-size: 14px;
+            .field-wrapper, .field-wrapper > * {
+                display: block;
+                max-width: 100%;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
             }
         }
-    }
-    .primary-strip-img {
-        width: $applePassWidth;
-        padding: 0 10px;
-        margin-left: -10px;
-        &.show-img {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center center;
+        .pass-label {
+            font-size: 10px;
+            font-weight: 500;
+            display: block;
+            margin: 0;
+            line-height: 12px;
         }
-        &.event {
-            height: calc(#{$applePassWidth} * 168/640)
-        }
-        &.normal {
-            height: calc(#{$applePassWidth} * 246/640)
-        }
-    }
-    .primary {
-        margin-bottom: 15px;
         .pass-value {
-            font-size: 30px;
-            font-weight: 300;
+            font-size: 13px;
         }
-        &.primary-strip {
-            .pass-value {
-                font-size: 58px;
-                line-height: 60px;
-                font-weight: 100;
-                color: white;
+        .logo-text {
+            font-size: 12px;
+            font-weight: 600;
+        }
+        header {
+            margin-bottom: 15px;
+            .image {
+                float: left;
+                display: block;
+                margin-right: 10px;
+                img {
+                    height: 43px;
+                    width: auto;
+                }
+            }
+            .logo .pass-value {
+                display: block;
+                min-height: 43px;
+                line-height: 43px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                font-size: 18px;
+            }
+            .field {
+                span {
+                    font-size: 14px;
+                }
             }
         }
-        &.primary-boarding {
-            .pass-value {
-                font-weight: 100;
+        .primary-strip-img {
+            width: $applePassWidth;
+            padding: 0 10px;
+            margin-left: -10px;
+            &.show-img {
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
             }
+            &.event {
+                height: calc(#{$applePassWidth} * 168/640)
+            }
+            &.normal {
+                height: calc(#{$applePassWidth} * 246/640)
+            }
+        }
+        .primary {
+            margin-bottom: 15px;
+            .pass-value {
+                font-size: 30px;
+                font-weight: 300;
+            }
+            &.primary-strip {
+                .pass-value {
+                    font-size: 58px;
+                    line-height: 60px;
+                    font-weight: 100;
+                    color: white;
+                }
+            }
+            &.primary-boarding {
+                .pass-value {
+                    font-weight: 100;
+                }
+            }
+            .secondary {
+                i {
+                    right: -107px;
+                }
+                .pass-value {
+                    font-size: 13px;
+                }
+            }
+            .image {
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+        }
+        .auxiliary {
+            margin-bottom: 15px;
+            border: 1px solid transparent;
         }
         .secondary {
-            i {
-                right: -107px;
-            }
-            .pass-value {
-                font-size: 13px;
-            }
+            margin-bottom: 15px;
         }
-        .image {
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-        }
-    }
-    .auxiliary {
-        margin-bottom: 15px;
-        border: 1px solid transparent;
-    }
-    .secondary {
-        margin-bottom: 15px;
-    }
-    footer {
-        text-align: center;
-        height: 15px;
-        position: absolute;
-        bottom: 100px;
-        img {
-            max-width: 245px;
+        footer {
+            text-align: center;
             height: 15px;
-            margin: 0 auto;
-        }
-    }
-}
-
-.expired {
-    .barcodeRow {
-        .barcodeContainer {
-            img{
-                opacity: 0.1;
+            position: absolute;
+            bottom: 100px;
+            img {
+                max-width: 245px;
+                height: 15px;
+                margin: 0 auto;
             }
         }
     }
-}
-.barcodeRow {
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    padding:10px;
-    .barcodeContainer {
-        padding:10px 10px 2px;
-        background-color:#fff;
-        border-radius:5px;
-        color: black;
-        img{
-            width: 100%;
+
+    .expired {
+        .barcodeRow {
+            .barcodeContainer {
+                img{
+                    opacity: 0.1;
+                }
+            }
         }
     }
-    .text {
-        margin-top:2px;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        white-space:nowrap;
+    .barcodeRow {
+        position:absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        padding:10px;
+        .barcodeContainer {
+            padding:10px 10px 2px;
+            background-color:#fff;
+            border-radius:5px;
+            color: black;
+            img{
+                width: 100%;
+            }
+        }
+        .text {
+            margin-top:2px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
     }
-}
-.info-button {
-    position:absolute;
-    bottom:10px;
-    right:10px;
-    height:20px;
-    width:20px;
-    border-radius:100%;
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    font-size: 14px;
-    line-height: 1.42857;
-    user-select: none;
-}
-.event-ticket-style {
-    label, input[type="radio"] {
-        line-height: 34px;
-        margin-top: 0;
-        margin-bottom: 0;
+    .info-button {
+        position:absolute;
+        bottom:10px;
+        right:10px;
+        height:20px;
+        width:20px;
+        border-radius:100%;
     }
-}
-.pass-field {
-    width: 450px;
-}
+    .event-ticket-style {
+        label, input[type="radio"] {
+            line-height: 34px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    .pass-field {
+        width: 450px;
+    }
 
+}

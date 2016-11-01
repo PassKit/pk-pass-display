@@ -1,0 +1,6 @@
+<div class="row field-group" ng-if="$ctrl.type == 'header'" data-ng-repeat="field in $ctrl.fields.slice().reverse() track by $index" data-ng-style="{width: $ctrl.width}">
+    <pk-apple-pass-field field="field" lang="$ctrl.lang"></div>
+</div>
+<div class="row field-group" ng-if="$ctrl.type != 'header'" data-ng-repeat="field in $ctrl.fields track by $index" data-ng-style="{width: $ctrl.width}">
+    <pk-apple-pass-field field="field" lang="$ctrl.lang"></div>
+</div>

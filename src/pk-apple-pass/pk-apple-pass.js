@@ -1,11 +1,11 @@
-(function (angular) {
+(function (angular, moment) {
     angular.module('pk-pass-display').component('pkApplePass', {
         controller: ['$http', PKApplePassController],
         templateUrl:"pk-apple-pass.html",
         bindings: {
             passId: '@',
             language: '@',
-            bgColour: '@',
+            bgColor: '@',
             onError: '&'
         }
     });
@@ -30,6 +30,7 @@
         ctrl.passIsExpired = false;
         ctrl.eventIsStripFormat = false;
         ctrl.noAppleBarcode = false;
+        ctrl.flip = false;
         ctrl.transitType = "";
         ctrl.mergedAuxSecFields = [];
 
@@ -137,6 +138,7 @@
             if (lang === undefined || typeof ctrl.language !== "string" || lang == "") {
                 lang = original[ctrl.display.wallet].defaultLang;
             }
+            moment.locale(lang);
             ctrl.fields = JSON.parse(JSON.stringify(original[ctrl.display.wallet].data[original[ctrl.display.wallet].passType]));
             mergeAuxSecFields(ctrl.fields);
             if (original[ctrl.display.wallet].locales.hasOwnProperty(lang)) {
@@ -188,4 +190,4 @@
             return new String(string).replace(new RegExp(regescaped, 'g'), replaceString);
         }
     }
-})(window.angular);
+})(window.angular, window.moment);

@@ -7,11 +7,12 @@
     <link rel="stylesheet" type="text/css" href="dist/pk-pass-display.css">
 </head>
 
-<body>
+<body style="background:black;">
     <div data-ng-app="myApp" data-ng-controller="passCtrl">
-        <pk-apple-pass pass-id="{{passId}}" bg-colour="#000"></pk-apple-pass>
+        <pk-apple-pass pass-id="{{passId}}" bg-color="black"></pk-apple-pass>
     </div>
     <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/moment/min/moment-with-locales.js"></script>
     <script src="dist/pk-pass-display.js"></script>
     <script>
         (function (angular) {

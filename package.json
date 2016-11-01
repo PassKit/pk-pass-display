@@ -8,10 +8,12 @@
   "repository": {},
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.5.8"
+    "angular": "^1.5.8",
+    "moment": "^2.15.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.1",
+    "bootstrap": "^3.3.7",
     "del": "^2.2.2",
     "eslint": "^3.9.1",
     "gulp": "^3.9.1",

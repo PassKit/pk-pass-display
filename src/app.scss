@@ -6,26 +6,7 @@ $applePassHeight: 380px;
 $applePassWidth: 270px;
 
 pk-apple-pass {
-    margin:20px;
     display: block;
+    @import "../node_modules/bootstrap/dist/css/bootstrap.css";
     @import "pk-apple-pass/_pk-apple-pass";
-}
-
-pk-apple-pass {
-    a {
-        cursor: pointer;
-    }
-    @media print {
-        .no-print {
-            display:none !important;
-        }
-    }
-    .row {
-        margin:0 !important;
-    }
-    
-    #appleDisplay{
-        width: $applePassWidth;
-        margin: auto;
-    }
 }
