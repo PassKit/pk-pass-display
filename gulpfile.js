@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     sass = require("gulp-sass"),
     postcss = require("gulp-postcss"),
     autoprefixer = require("autoprefixer"),
-    project = require('./package.json');
+    project = require('./package.json'),
+    cssimport = require("gulp-cssimport");
 
 var paths = {
     src: {
@@ -22,7 +23,10 @@ var paths = {
 
 //just copies and minifies the css files from src to dist
 gulp.task('css', function() {
-    gulp.src(paths.src.scss)
+    return gulp.src(paths.src.scss)
+        //import any externally linked vendor css files (only import css, scss will be imported automatically)
+        //do this first to keep everything scoped inside correctly
+        .pipe(cssimport({extensions: ["css"]}))
         //convert scss files to css
         .pipe(sass.sync()).on('error', sass.logError)
         //adds prefixes to css fields to manage cross browser support for newer css features
@@ -44,7 +48,7 @@ gulp.task('css', function() {
 
 //compiles js files minifies and copies to dist
 gulp.task('js', function() {
-    gulp.src(paths.src.js)
+    return gulp.src(paths.src.js)
         //embeds the templateUrl html files for directives directly into the js files
         //this is required to package the module correctly
         .pipe(embedTemplates()).on('error', stopError)
@@ -65,12 +69,12 @@ gulp.task('js', function() {
 
 //clears the distribution folder
 gulp.task("clean", function() {
-    del(paths.dist);
+    return del(paths.dist);
 });
 
 //by default cleans the distribution folder then re compiles
 gulp.task('default', ['clean'], function(){
-    gulp.start(['css', 'js']);
+    return gulp.start(['css', 'js']);
 });
 
 //will update the distribution files automatically when they change

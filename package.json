@@ -20,6 +20,7 @@
     "gulp-angular-embed-templates": "^2.3.0",
     "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.6.0",
+    "gulp-cssimport": "^4.0.1",
     "gulp-gzip": "^1.4.0",
     "gulp-postcss": "^6.2.0",
     "gulp-rename": "^1.2.2",
