@@ -16,15 +16,7 @@
     <script>
         (function (angular) {
             angular.module("myApp", ["pk-pass-display"]);
-            //angular.module("myApp").config(["$locationProvider", appConfig]);
             angular.module("myApp").controller("passCtrl", ["$scope", "$window", passController]);
-
-            function appConfig($locationProvider){
-                $locationProvider.html5Mode({
-                    enabled: true,
-                    requireBase: false
-                });
-            }
 
             function passController($scope, $window) {
                 $scope.passId = getParameterByName("pid", $window.location.href)
