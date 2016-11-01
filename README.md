@@ -6,7 +6,7 @@ Include in your index file:
 
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
-    <script src="node_modules/pk-pass-display/dist/pk-pass-display.min.js"></script>
+    <script src="dist/pk-pass-display.min.js"></script>
 
 Include in angular app:
     var app = angular.module("myApp", ["pk-pass-display"]); 
