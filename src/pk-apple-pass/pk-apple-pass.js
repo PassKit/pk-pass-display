@@ -48,6 +48,9 @@
         ctrl.barcodeIsSquare = barcodeIsSquare;
 
         function getPass(passId) {
+            if (typeof passId !== "string" || passId == "") {
+                return;
+            }
             passHasLoaded = false;
             $http({
                 method: 'GET',
