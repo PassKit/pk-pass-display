@@ -4,7 +4,7 @@
         templateUrl:"apple-pass-field.html",
         bindings: {
             field: '<',
-            lang: '@'
+            lang: '<'
         }
     });
 

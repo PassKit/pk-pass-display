@@ -25,6 +25,7 @@
         }
 
         var original;
+        var passHasLoaded = false;
 
         //Scope vars
         ctrl.passIsExpired = false;
@@ -47,10 +48,12 @@
         ctrl.barcodeIsSquare = barcodeIsSquare;
 
         function getPass(passId) {
+            passHasLoaded = false;
             $http({
                 method: 'GET',
                 url: "https://api-pass.passkit.net/v2/passes/"+passId+"/json"
             }).then(function (response) {
+                passHasLoaded = true;
                 var pass = response.data;
                 original = pass;
                 if (pass.hasOwnProperty("appleWallet")) {
@@ -135,6 +138,9 @@
         }
 
         function selectLanguage(lang) {
+            if (!passHasLoaded) {
+                return;
+            }
             if (lang === undefined || typeof ctrl.language !== "string" || lang == "") {
                 lang = original[ctrl.display.wallet].defaultLang;
             }
