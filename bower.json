@@ -1,0 +1,22 @@
+{
+  "name": "pk-pass-display",
+  "description": "PassKit pass display angular plugin",
+  "main": [
+    "dist/pk-pass-display.js",
+    "dist/pk-pass-display.css"
+  ],
+  "authors": [
+    "PassKit <support@passkit.com> (https://passkit.com)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/PassKitInc/pk-pass-display",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.8",
+    "moment": "^2.15.2"
+  }
+}
