@@ -3,14 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width">
-    <base href="/pk-pass-display/">
     <title>pk-pass-display by PassKitInc</title>
-    <link rel="shortcut icon" href="images/favicon.ico">
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
-    <link rel="stylesheet" type="text/css" href="dist/pk-pass-display.min.css">
+    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -34,84 +31,28 @@
         <h1>
 <a id="passkit-pass-display" class="anchor" href="#passkit-pass-display" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PassKit Pass Display</h1>
 
-<div data-ng-app="myApp" data-ng-controller="passCtrl">
-    <pk-apple-pass pass-id="{{passId || '7TzCfQbfwmD3Cm'}}"></pk-apple-pass>
-</div>
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>Include in your index file:
-    </p>
+<p>Include in your index file:</p>
 
-<pre><code>&lt;!doctype html&gt;
+<pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;dist/pk-pass-display.min.css&quot;&gt;
-    &lt;base href=&quot;/&quot;&gt;
-    &lt;script src=&quot;node_modules/angular/angular.min.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;node_modules/moment/min/moment-with-locales.min.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;dist/pk-pass-display.min.js&quot;&gt;&lt;/script&gt;
-    &lt;script&gt;
-        (function (angular) {
-            angular.module(&quot;myApp&quot;, [&quot;pk-pass-display&quot;])
-            .config([&quot;$locationProvider&quot;, function($locationProvider) {
-                $locationProvider.html5Mode(true);
-            }])
-            .controller(&quot;passCtrl&quot;, [&quot;$scope&quot;, &quot;$location&quot;, passController]);
-
-            function passController($scope, $location) {
-                $scope.passId = $location.search().pid
-            }
-        })(window.angular);
-    &lt;/script&gt;
+    &lt;link rel="stylesheet" type="text/css" href="dist/pk-pass-display.min.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div data-ng-app=&quot;myApp&quot; data-ng-controller=&quot;passCtrl&quot;&gt;
-        &lt;pk-apple-pass pass-id=&quot;{{passId}}&quot;&gt;&lt;/pk-apple-pass&gt;
+    &lt;div data-ng-app="myApp" data-ng-controller="passCtrl"&gt;
+        &lt;pk-apple-pass pass-id="{{passId}}"&gt;&lt;/pk-apple-pass&gt;
     &lt;/div&gt;
-&lt;/body&gt;
-</code></pre>
-
-<p> 
-Optional attributes for pk-apple-pass element are:
-    language="en" // can be any language code available on your pass
-    bg-color="blue" // can be any css color</p>
-
-<h2>
-<a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h2>
-
-<p>(Requires Node.js <a href="https://nodejs.org">https://nodejs.org</a>)
-Make sure npm is up to date (comes with Node.js)
-Run <code>npm i</code></p>
-
-<h3>
-<a id="modifying" class="anchor" href="#modifying" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Modifying</h3>
-
-<p>To have dist update while you modify the files:
-Run <code>gulp watch</code>
-/dist will be updated whenever you save changes</p>
-
-<h3>
-<a id="deploying" class="anchor" href="#deploying" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deploying</h3>
-
-<p>Modify files as required
-Run <code>gulp</code>
-/dist will now contain updated files and package version can be updated</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/PassKitInc">PassKitInc</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
-    <script src="dist/pk-pass-display.min.js"></script>
-    <script>
+    &lt;script src="node_modules/angular/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="node_modules/moment/min/moment-with-locales.min.js"&gt;&lt;/script&gt;
+    &lt;script src="dist/pk-pass-display.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
         (function (angular) {
             angular.module("myApp", ["pk-pass-display"])
             .config(["$locationProvider", function($locationProvider) {
-                $locationProvider.html5Mode(true);
+                $locationProvider.html5Mode({enabled:true,requireBase:false});
             }])
             .controller("passCtrl", ["$scope", "$location", passController]);
 
@@ -119,6 +60,47 @@ Run <code>gulp</code>
                 $scope.passId = $location.search().pid
             }
         })(window.angular);
-    </script>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Use as component (see index.html for example):</p>
+
+<pre><code>&lt;pk-pass-display pass-id="passId"&gt;&lt;/pk-pass-display&gt;
+</code></pre>
+
+<p>Optional attributes are:</p>
+
+<pre><code>language="en" // can be any language code available on your pass
+bg-color="blue" // can be any css color
+</code></pre>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h2>
+
+<p>(Requires Node.js <a href="https://nodejs.org">https://nodejs.org</a>).<br>
+Make sure npm is up to date (comes with Node.js).<br>
+Run <code>npm i</code></p>
+
+<h3>
+<a id="modifying" class="anchor" href="#modifying" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Modifying</h3>
+
+<p>To have dist update while you modify the files:<br>
+Run <code>gulp watch</code> /dist will be updated whenever you save changes.</p>
+
+<h3>
+<a id="deploying" class="anchor" href="#deploying" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deploying</h3>
+
+<p>Modify files as required.<br>
+Run <code>gulp</code> "/dist" will now contain updated files and package version can be updated.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/PassKitInc">PassKitInc</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
