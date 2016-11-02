@@ -1,15 +1,17 @@
 {
   "name": "pk-pass-display",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PassKit pass display angular plugin",
   "author": "PassKit <support@passkit.com> (https://passkit.com}",
   "homepage": "https://passkit.com",
   "bugs": "https://github.com/PassKitInc/pk-pass-display/issues",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/PassKitInc/pk-pass-display.git"
+    "type": "git",
+    "url": "https://github.com/PassKitInc/pk-pass-display.git"
   },
-  "scripts":{"prepublish": "gulp"},
+  "scripts": {
+    "prepublish": "gulp"
+  },
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.8",
