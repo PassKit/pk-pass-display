@@ -21,6 +21,8 @@ var paths = {
     dist: './dist'
 };
 
+var ignoreError = false;
+
 //just copies and minifies the css files from src to dist
 gulp.task('css', function() {
     return gulp.src(paths.src.scss)
@@ -79,6 +81,8 @@ gulp.task('default', ['clean'], function(){
 
 //will update the distribution files automatically when they change
 gulp.task('watch', ['default'], function() {
+    //allow watch to keep running if an error occurs
+    ignoreError = true;
     //watch for changes in scss files and rerun css task
     gulp.watch(paths.src.scss, ['css']);
     //watch for changes in js files and rerun js task
@@ -89,5 +93,7 @@ gulp.task('watch', ['default'], function() {
 //use .on('error', stopError) after pipe event
 function stopError (error) {
     console.log(error.toString());
-    this.emit('end');
+    if (ignoreError) {
+        this.emit('end');
+    }
 }
