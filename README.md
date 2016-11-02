@@ -1,5 +1,8 @@
 #PassKit Pass Display
 
+[![NPM version](https://img.shields.io/npm/v/pk-pass-display.svg)](https://npmjs.org/package/pk-pass-display)
+[![Bower version](https://img.shields.io/bower/v/pk-pass-display.svg)](https://github.com/PassKitInc/pk-pass-display)
+
 ##Usage
 
 Include in your index file:
