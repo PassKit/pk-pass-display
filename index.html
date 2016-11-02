@@ -8,30 +8,21 @@
 
 <body>
     <div data-ng-app="myApp" data-ng-controller="passCtrl">
-        <pk-apple-pass pass-id="{{passId || '7TzCfQbfwmD3Cm'}}"></pk-apple-pass>
+        <pk-apple-pass pass-id="{{passId}}"></pk-apple-pass>
     </div>
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
     <script src="dist/pk-pass-display.min.js"></script>
     <script>
         (function (angular) {
-            angular.module("myApp", ["pk-pass-display"]);
-            angular.module("myApp").controller("passCtrl", ["$scope", "$window", passController]);
+            angular.module("myApp", ["pk-pass-display"])
+            .config(["$locationProvider", function($locationProvider) {
+                $locationProvider.html5Mode({enabled:true,requireBase:false});
+            }])
+            .controller("passCtrl", ["$scope", "$location", passController]);
 
-            function passController($scope, $window) {
-                $scope.passId = getParameterByName("pid", $window.location.href)
-            }
-
-            function getParameterByName(name, url) {
-                if (!url) {
-                    url = window.location.href;
-                }
-                name = name.replace(/[\[\]]/g, "\\$&");
-                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                    results = regex.exec(url);
-                if (!results) return null;
-                if (!results[2]) return '';
-                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            function passController($scope, $location) {
+                $scope.passId = $location.search().pid
             }
         })(window.angular);
     </script>
