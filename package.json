@@ -11,7 +11,7 @@
   },
   "scripts": {
     "preversion": "./version.sh",
-    "postversion": "./post-version"
+    "postversion": "./post-version.sh"
   },
   "license": "MIT",
   "dependencies": {
