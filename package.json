@@ -1,6 +1,6 @@
 {
   "name": "pk-pass-display",
-  "version": "1.0.7",
+  "version": "1.0.7", //note: do not change this manually, please use npm version
   "description": "PassKit pass display angular plugin",
   "author": "PassKit <support@passkit.com> (https://passkit.com)",
   "homepage": "https://passkit.com",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "preversion": "./version.sh",
-    "postversion": "git push --tags && npm publish && git checkout master"
+    "postversion": "git push && git push --tags && npm publish && git checkout master"
   },
   "license": "MIT",
   "dependencies": {
