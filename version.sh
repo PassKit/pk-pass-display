@@ -16,4 +16,6 @@ git merge master -q --no-edit --log --no-commit
 #build the distribution files and then finish merge
 gulp
 git add -A
-git commit --no-edit
+if ! git diff-index --quiet HEAD --; then
+    git commit --no-edit
+fi
