@@ -14,7 +14,8 @@
             passId: '@',
             language: '@',
             bgColor: '@',
-            onError: '&'
+            onError: '&',
+            onLoaded: '&'
         }
     });
 
@@ -93,8 +94,9 @@
                         ctrl.passIsExpired = true;
                     }
                 }
+                ctrl.onLoaded({pass: pass});
             }, function (response) {
-                ctrl.onError("Error: "+ response.status + " - " + JSON.stringify(response.data));
+                ctrl.onError({err: "Error: "+ response.status + " - " + JSON.stringify(response.data)});
             });
         }
 
