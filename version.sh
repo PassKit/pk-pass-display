@@ -9,8 +9,6 @@ if [ $branch_name != "master" ]; then
     echo "Only run versioning from master branch"
     exit 1
 fi
-#check no uncommited changes, otherwise exit
-git diff -s --exit-code || echo "Please commit all changes before versioning"
 
 #switch branch to distribution branch and merge latest changes from master
 git checkout dist
