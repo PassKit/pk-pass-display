@@ -10,8 +10,7 @@ var gulp = require('gulp'),
     postcss = require("gulp-postcss"),
     autoprefixer = require("autoprefixer"),
     project = require('./package.json'),
-    cssimport = require("gulp-cssimport"),
-    angularFilesort = require("gulp-angular-filesort");
+    cssimport = require("gulp-cssimport");
 
 var paths = {
     src: {
@@ -55,10 +54,6 @@ gulp.task('js', function() {
         //embeds the templateUrl html files for directives directly into the js files
         //this is required to package the module correctly
         .pipe(embedTemplates()).on('error', stopError)
-        //sorts the angular files
-        //added this because the gulp task seemed to randomly order the files
-        //which caused a git diff in the dist/*.js files even if there was no real change
-        .pipe(angularFilesort())
         //merge all js files into one js library
         .pipe(concat(project.name + ".js"))
         //write out js file
