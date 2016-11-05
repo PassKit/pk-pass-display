@@ -11,11 +11,15 @@ if [ $branch_name != "master" ]; then
 fi
 
 #switch branch to distribution branch and merge latest changes from master
-git checkout dist
+echo "merging master branch into dist branch"
+git checkout -q dist
 git merge master -q --no-edit --log --no-commit
 #build the distribution files and then finish merge
+echo "building dist files"
 gulp
+echo "adding any changed dist files to commit"
 git add -A
 if ! git diff-index --quiet HEAD --; then
-    git commit --no-edit
+    git commit -q --no-edit
 fi
+echo "preversion script finished"

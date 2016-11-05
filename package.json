@@ -11,7 +11,7 @@
   },
   "scripts": {
     "preversion": "./version.sh",
-    "postversion": "git push --tags && npm publish && git checkout master"
+    "postversion": "./post-version.sh"
   },
   "license": "MIT",
   "dependencies": {
