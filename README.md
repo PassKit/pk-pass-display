@@ -10,7 +10,8 @@ Include in your index file:
     <!DOCTYPE html>
     <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="dist/pk-pass-display.min.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/pk-pass-display/dist/pk-pass-display.min.css">
     </head>
     <body>
         <div data-ng-app="myApp" data-ng-controller="passCtrl">
@@ -18,7 +19,7 @@ Include in your index file:
         </div>
         <script src="node_modules/angular/angular.min.js"></script>
         <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
-        <script src="dist/pk-pass-display.min.js"></script>
+        <script src="node_modules/pk-pass-display/dist/pk-pass-display.min.js"></script>
         <script>
             (function (angular) {
                 angular.module("myApp", ["pk-pass-display"])
