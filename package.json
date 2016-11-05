@@ -10,8 +10,8 @@
     "url": "https://github.com/PassKitInc/pk-pass-display.git"
   },
   "scripts": {
-    "preversion": "git checkout dist && gulp && git add -A",
-    "postversion": "npm publish"
+    "preversion": "git checkout dist && git merge master && gulp && git add -A",
+    "postversion": "git push --tags && npm publish"
   },
   "license": "MIT",
   "dependencies": {
