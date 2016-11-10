@@ -297,7 +297,24 @@
         function languageChange(val) {
             if(val != null) {
                 if(val.hasOwnProperty('text')) {
+                    // sort the key to avoid substring is replaced before
+                    // the whole string
+
+                    var sortedKeys = [];
                     for (var key in val.text) {
+                        if (val.text.hasOwnProperty(key)) {
+                            sortedKeys.push(key);
+                        }
+                    }
+
+                    // sort keys by text length to avoid substring is replaced randomly
+                    sortedKeys.sort(function(a, b){
+                        // ASC  -> a.length - b.length
+                        // DESC -> b.length - a.length
+                        return b.length - a.length;
+                    });
+
+                    sortedKeys.forEach(function(key){
                         if (val.text.hasOwnProperty(key) && typeof ctrl.field !== "undefined") {
                             if(ctrl.field.hasOwnProperty("value")) {
                                 ctrl.field.value = replaceAll(ctrl.field.value, key, val.text[key]);
@@ -309,7 +326,7 @@
                                 ctrl.field.attributedValue = replaceAll(ctrl.field.attributedValue, key, val.text[key]);
                             }
                         }
-                    }
+                    });
                 }
             }
         }
