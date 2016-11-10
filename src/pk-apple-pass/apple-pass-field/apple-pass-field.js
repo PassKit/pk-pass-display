@@ -80,7 +80,7 @@
             if(val != null) {
                 if(val.hasOwnProperty('text')) {
                     // sort the key to avoid substring is replaced before
-                     // the whole string
+                    // the whole string
 
                     var sortedKeys = [];
                     for (var key in val.text) {
@@ -91,9 +91,9 @@
 
                     // sort keys by text length to avoid substring is replaced randomly
                     sortedKeys.sort(function(a, b){
-                        // ASC  -> a.length - b.length 
-                        // DESC -> b.length - a.length 
-                        return b.length - a.length; 
+                        // ASC  -> a.length - b.length
+                        // DESC -> b.length - a.length
+                        return b.length - a.length;
                     });
 
                     sortedKeys.forEach(function(key){
@@ -108,7 +108,7 @@
                                 ctrl.field.attributedValue = replaceAll(ctrl.field.attributedValue, key, val.text[key]);
                             }
                         }
-                    })
+                    });
                 }
             }
         }
