@@ -6,7 +6,9 @@
             passId: '@',
             language: '@',
             bgColor: '@',
-            onError: '&'
+            apiRoot: '@',
+            onError: '&',
+            onLoaded: '&'
         }
     });
 
@@ -52,9 +54,14 @@
                 return;
             }
             passHasLoaded = false;
+
+            var requestRoot = "https://api-pass.passkit.net/";
+            if (typeof ctrl.apiRoot === "string" && ctrl.apiRoot != "") {
+                requestRoot = ctrl.apiRoot;
+            }
             $http({
                 method: 'GET',
-                url: "https://api-pass.passkit.net/v2/passes/"+passId+"/json"
+                url: requestRoot + "v2/passes/" + passId + "/json"
             }).then(function (response) {
                 passHasLoaded = true;
                 var pass = response.data;
@@ -85,8 +92,9 @@
                         ctrl.passIsExpired = true;
                     }
                 }
+                ctrl.onLoaded({pass: pass});
             }, function (response) {
-                ctrl.onError("Error: "+ response.status + " - " + JSON.stringify(response.data));
+                ctrl.onError({err: "Error: "+ response.status + " - " + JSON.stringify(response.data)});
             });
         }
 

@@ -21,7 +21,7 @@
     #appleDisplay.pass-boardingPass .pass-header:before{left: -15px;right: auto;}
     #appleDisplay.pass-boardingPass .pass-header:after{left: auto;right: -15px;}
 </style>
-<style type="text/css" ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat">#appleDisplay.pass .content.show-img {background-image: url('{{ $ctrl.images.background || $ctrl.selectedLanguage.images.background }}');background-size:cover;}</style>
+<style type="text/css" ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat">#appleDisplay.pass .content.show-img {background-image: url('{{ $ctrl.images.background || $ctrl.selectedLanguage.images.background }}');background-size:cover; background-position:center;}</style>
 <div id="appleDisplay" data-ng-class="{flipped: displayMode == 'back'}" ng-if="$ctrl.display.wallet == 'appleWallet'" class="pass pass-{{$ctrl.display.type}}">
     <div ng-class="{'show-img': $ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat}" class="content">
         <div ng-class="{displayHide:$ctrl.flip}" class="flip-front">
