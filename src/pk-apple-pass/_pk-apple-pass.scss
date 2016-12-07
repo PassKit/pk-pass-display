@@ -382,17 +382,6 @@
         .secondary {
             margin-bottom: 15px;
         }
-        footer {
-            text-align: center;
-            height: 15px;
-            position: absolute;
-            bottom: 100px;
-            img {
-                max-width: 245px;
-                height: 15px;
-                margin: 0 auto;
-            }
-        }
     }
 
     .expired {
@@ -425,14 +414,21 @@
             text-overflow:ellipsis;
             white-space:nowrap;
         }
+        img.footer {
+            $footerWidth: $applePassWidth*0.8;
+            $footerHeight: $footerWidth*15/286; /*use the apple ratio to fix width and height*/
+            max-height: $footerHeight;
+            max-width: $footerWidth;
+        }
     }
     .info-button {
         position:absolute;
         bottom:10px;
         right:10px;
-        height:20px;
-        width:20px;
+        height:15px;
+        width:15px;
         border-radius:100%;
+        font-size: 10px;
     }
     .event-ticket-style {
         label, input[type="radio"] {
