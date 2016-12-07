@@ -38,7 +38,7 @@ Include in your index file:
 
 Use as component (see index.html for example):
 
-    <pk-pass-display pass-id="passId"></pk-pass-display>
+    <pk-apple-pass pass-id="passId"></pk-apple-pass>
 
 Optional attributes are:
 
