@@ -135,16 +135,12 @@
                             </div>
                         </div>
                     </div>
-                    <!--Footer image for transport pass-->
-                    <footer data-ng-if="$ctrl.display.type == 'boardingPass'">
-                        <div class="image">
-                            <image data-ng-src="{{ $ctrl.images.footer || $ctrl.selectedLanguage.images.footer }}"></image>
-                        </div>
-                    </footer>
                     <!--Barcode Section... Actually pretty straightforward-->
-                    <div class="barcode-section">
+                    <div class="barcode-section barcodeRow text-center">
+                        <!--Footer image for transport pass-->
+                        <img class="footer" data-ng-src="{{ $ctrl.images.footer || $ctrl.selectedLanguage.images.footer }}">
                         <div ng-class="{expired:$ctrl.passIsExpired}" data-ng-if="$ctrl.barcode">
-                            <div data-ng-if="!$ctrl.barcodeIsSquare()" class="row barcodeRow">
+                            <div data-ng-if="!$ctrl.barcodeIsSquare()" class="row">
                                 <div class="col-xs-1"></div>
                                 <div data-ng-if="!$ctrl.noAppleBarcode" class="col-xs-10 barcodeContainer">
                                     <img ng-src="https://d1ye292yvr7tf6.cloudfront.net/images/barcode.php?m={{$ctrl.barcode.message}}&amp;f={{$ctrl.barcode.format}}&amp;e=UTF-8&amp;x2=1" class="barcode rect"/>
@@ -154,7 +150,7 @@
                                 </div>
                                 <button ng-click="$ctrl.flipPass()" class="btn btn-default col-xs-1 info-button no-print">i</button>
                             </div>
-                            <div data-ng-if="$ctrl.barcodeIsSquare()" class="row barcodeRow">
+                            <div data-ng-if="$ctrl.barcodeIsSquare()" class="row">
                                 <div class="col-xs-3"></div>
                                 <div data-ng-if="!$ctrl.noAppleBarcode" class="col-xs-6 barcodeContainer">
                                     <img ng-src="https://d1ye292yvr7tf6.cloudfront.net/images/barcode.php?m={{$ctrl.barcode.message}}&amp;f={{$ctrl.barcode.format}}&amp;e=UTF-8&amp;x2=1" class="barcode square"/>
@@ -167,7 +163,7 @@
                             </div>
                         </div>
                         <div data-ng-if="!$ctrl.barcode">
-                            <div class="row barcodeRow">
+                            <div class="row">
                                 <div class="col-xs-11"></div>
                                 <button ng-click="$ctrl.flipPass()" class="btn btn-default col-xs-1 info-button no-print">i</button>
                             </div>
