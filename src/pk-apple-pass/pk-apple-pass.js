@@ -177,8 +177,8 @@
         function langReplace(inputStr, lang) {
             if (lang != null && lang.hasOwnProperty("text")) {
                 for (var key in lang.text) {
-                    if (lang.text.hasOwnProperty(key)) {
-                        inputStr = replaceAll(inputStr, key, lang.text[key]);
+                    if (lang.text.hasOwnProperty(key) && inputStr == key) {
+                        inputStr = lang.text[key];
                     }
                 }
             }
@@ -200,11 +200,6 @@
 
         function barcodeIsSquare() {
             return ctrl.hasOwnProperty('barcode') && ctrl.barcode.hasOwnProperty('format') && (ctrl.barcode.format == 'qrcode' || ctrl.barcode.format == 'azteccode');
-        }
-
-        function replaceAll(string, find, replaceString) {
-            var regescaped = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-            return new String(string).replace(new RegExp(regescaped, 'g'), replaceString);
         }
     }
 })(window.angular, window.moment);

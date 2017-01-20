@@ -18,7 +18,7 @@
                 fieldChange(ctrl.field);
             }
             if (changesObj.hasOwnProperty("lang") && ctrl.lang != undefined) {
-                languageChange(ctrl.lang);
+                langReplace(ctrl.lang);
             }
         }
 
@@ -76,43 +76,24 @@
             }
         }
 
-        function languageChange(val) {
-            if(val != null) {
-                if(val.hasOwnProperty('text')) {
-                    // sort the key to avoid substring is replaced before
-                    // the whole string
-
-                    var sortedKeys = [];
-                    for (var key in val.text) {
-                        if (val.text.hasOwnProperty(key)) {
-                            sortedKeys.push(key);
+        function langReplace(lang) {
+            if (lang != null && lang.hasOwnProperty("text")) {
+                for (var key in lang.text) {
+                    if (lang.text.hasOwnProperty(key) && typeof ctrl.field !== "undefined") {
+                        if(ctrl.field.hasOwnProperty("value") && ctrl.field.value == key) {
+                            ctrl.field.value = lang.text[key];
+                        }
+                        if(ctrl.field.hasOwnProperty("label") && ctrl.field.label == key) {
+                            ctrl.field.label = lang.text[key];
+                        }
+                        if(ctrl.field.hasOwnProperty("attributedValue") && ctrl.field.attributedValue == key) {
+                            ctrl.field.attributedValue = lang.text[key];
                         }
                     }
-
-                    // sort keys by text length to avoid substring is replaced randomly
-                    sortedKeys.sort(function(a, b){
-                        // ASC  -> a.length - b.length
-                        // DESC -> b.length - a.length
-                        return b.length - a.length;
-                    });
-
-                    sortedKeys.forEach(function(key){
-                        if (val.text.hasOwnProperty(key) && typeof ctrl.field !== "undefined") {
-                            if(ctrl.field.hasOwnProperty("value")) {
-                                ctrl.field.value = replaceAll(ctrl.field.value, key, val.text[key]);
-                            }
-                            if(ctrl.field.hasOwnProperty("label")) {
-                                ctrl.field.label = replaceAll(ctrl.field.label, key, val.text[key]);
-                            }
-                            if(ctrl.field.hasOwnProperty("attributedValue")) {
-                                ctrl.field.attributedValue = replaceAll(ctrl.field.attributedValue, key, val.text[key]);
-                            }
-                        }
-                    });
                 }
             }
         }
-            
+
         function getValue(field) {
             var text = "";
             if(field != null) {
@@ -158,11 +139,6 @@
                 return date;
             }
             return moment(date).format(format);
-        }
-
-        function replaceAll(string, find, replaceString) {
-            var regescaped = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-            return new String(string).replace(new RegExp(regescaped, 'g'), replaceString);
         }
     }
 })(window.angular, window.moment);

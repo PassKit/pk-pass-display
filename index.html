@@ -9,7 +9,7 @@
 
 <body>
     <div data-ng-app="myApp" data-ng-controller="passCtrl">
-        <pk-apple-pass pass-id="{{passId}}"></pk-apple-pass>
+        <pk-apple-pass pass-id="{{passId}}" language="{{lang}}"></pk-apple-pass>
     </div>
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
@@ -24,6 +24,7 @@
 
             function passController($scope, $location) {
                 $scope.passId = $location.search().pid
+                $scope.lang = $location.search().lang
             }
         })(window.angular);
     </script>
