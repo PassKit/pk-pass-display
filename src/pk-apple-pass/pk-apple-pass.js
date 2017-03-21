@@ -48,6 +48,7 @@
         //Scope funcs
         ctrl.flipPass = flipPass;
         ctrl.barcodeIsSquare = barcodeIsSquare;
+        ctrl.queryEncode = encodeURIComponent;
 
         function getPass(passId) {
             if (typeof passId !== "string" || passId == "") {
@@ -117,8 +118,8 @@
             var appleBarcodeFormats = {
                 "PKBarcodeFormatQR": "qrcode",
                 "PKBarcodeFormatPDF417": "pdf417",
-                "PKBarcodeFormatAztec": "azteccode",
-                "PKBarcodeFormatCode128": "code128p"
+                "PKBarcodeFormatAztec": "aztec",
+                "PKBarcodeFormatCode128": "code128"
             };
             var selectedBarcode = {};
             if (barcodes.length > 1) {
@@ -199,7 +200,7 @@
         }
 
         function barcodeIsSquare() {
-            return ctrl.hasOwnProperty('barcode') && ctrl.barcode.hasOwnProperty('format') && (ctrl.barcode.format == 'qrcode' || ctrl.barcode.format == 'azteccode');
+            return ctrl.hasOwnProperty('barcode') && ctrl.barcode.hasOwnProperty('format') && (ctrl.barcode.format == 'qrcode' || ctrl.barcode.format == 'aztec');
         }
     }
 })(window.angular, window.moment);
