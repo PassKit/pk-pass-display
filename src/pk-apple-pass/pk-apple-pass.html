@@ -31,14 +31,14 @@
                     <div class="pass-header">
                         <div class="row">
                             <!--Logo Image + Logo Text-->
-                            <div data-ng-class="{'col-xs-10': $ctrl.fields.headerFields.length &lt; 2, 'col-xs-8': $ctrl.fields.headerFields.length == 2, 'col-xs-6': $ctrl.fields.headerFields.length == 3}" class="logo">
+                            <div class="col-xs-6 logo">
                                 <div class="image">
                                     <div class="image-wrapper"><img data-ng-src="{{ $ctrl.images.logo || $ctrl.selectedLanguage.images.logo }}"/></div>
                                 </div>
                                 <div class="logoText pass-value">{{$ctrl.passData.logoText}}</div>
                             </div>
                             <!--Header Fields-->
-                            <div data-ng-class="{'col-xs-2': $ctrl.fields.headerFields.length &lt; 2, 'col-xs-4': $ctrl.fields.headerFields.length  == 2, 'col-xs-6': $ctrl.fields.headerFields.length  == 3}">
+                            <div class="col-xs-6">
                                 <div class="row">
                                     <pk-apple-pass-field-group fields="$ctrl.fields.headerFields" data-type="header" lang="$ctrl.selectedLanguage" class="text-right"></pk-apple-pass-field-group>
                                 </div>
