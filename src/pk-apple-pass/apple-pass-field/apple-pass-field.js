@@ -4,13 +4,14 @@
         templateUrl:"apple-pass-field.html",
         bindings: {
             field: '<',
-            lang: '<'
+            lang: '<',
+            length: '<?'
         }
     });
 
     function PKApplePassFieldController($sce, $element) {
         var ctrl = this;
-    
+
         ctrl.$onChanges = onChanges;
 
         function onChanges(changesObj) {
@@ -23,6 +24,21 @@
         }
 
         //scope funcs
+        ctrl.getFontSize = getFontSize;
+
+        // getFontSize will reduce the font-size of the value field if the text is long enough and if it's only
+        // one column in a secondary or auxilary row
+        function getFontSize(field) {
+            if ((field !== null && field !== undefined && field.hasOwnProperty('key') && (field.key.startsWith('s') || field.key.startsWith('a'))) &&
+                (ctrl !== null && ctrl !== undefined && ctrl.hasOwnProperty('length') && ctrl.length === 1) &&
+                field.hasOwnProperty('value') && field.value.length > 32) {
+
+                return "70%";
+            }
+
+            return "inherit";
+        }
+
         ctrl.getValue = getValue;
 
         var TextAlignmentMap = {

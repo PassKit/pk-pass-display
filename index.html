@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="dist/pk-pass-display.min.css">
 </head>
 
-<body>
+<body style="background: black;">
     <div data-ng-app="myApp" data-ng-controller="passCtrl">
         <pk-apple-pass pass-id="{{passId}}" language="{{lang}}"></pk-apple-pass>
     </div>
@@ -23,8 +23,8 @@
             .controller("passCtrl", ["$scope", "$location", passController]);
 
             function passController($scope, $location) {
-                $scope.passId = $location.search().pid
-                $scope.lang = $location.search().lang
+                $scope.passId = $location.search().pid;
+                $scope.lang = $location.search().lang;
             }
         })(window.angular);
     </script>
