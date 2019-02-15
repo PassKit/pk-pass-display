@@ -33,10 +33,12 @@
                 (ctrl !== null && ctrl !== undefined && ctrl.hasOwnProperty('length') && ctrl.length === 1) &&
                 field.hasOwnProperty('value') && field.value.length > 32) {
 
-                return "70%";
+                return {
+                    'font-size': "70%"
+                };
             }
 
-            return "inherit";
+            return {};
         }
 
         ctrl.getValue = getValue;
