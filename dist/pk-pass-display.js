@@ -215,7 +215,7 @@
 (function (angular, moment) {
     angular.module('pk-pass-display').component('pkApplePassField', {
         controller: ["$sce", "$element", PKApplePassFieldController],
-        template:'<div class="field"><div class="field-wrapper"><label class="pass-label">{{$ctrl.field.label}}</label> <span class="pass-value" ng-style="{\'font-size\': $ctrl.getFontSize($ctrl.field)}" data-ng-bind-html="$ctrl.getValue($ctrl.field)"></span></div></div>',
+        template:'<div class="field"><div class="field-wrapper"><label class="pass-label">{{$ctrl.field.label}}</label> <span class="pass-value" ng-style="$ctrl.getFontSize($ctrl.field)" data-ng-bind-html="$ctrl.getValue($ctrl.field)"></span></div></div>',
         bindings: {
             field: '<',
             lang: '<',
@@ -247,10 +247,12 @@
                 (ctrl !== null && ctrl !== undefined && ctrl.hasOwnProperty('length') && ctrl.length === 1) &&
                 field.hasOwnProperty('value') && field.value.length > 32) {
 
-                return "70%";
+                return {
+                    'font-size': "70%"
+                };
             }
 
-            return "inherit";
+            return {};
         }
 
         ctrl.getValue = getValue;
