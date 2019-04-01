@@ -56,26 +56,26 @@
                         <!--Transport-->
                         <div data-ng-if="$ctrl.display.type == 'boardingPass'" class="primary row primary-boarding">
                             <div class="col-xs-5">
-                                <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></pk-apple-pass-field>
+                                <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage" length="2"></pk-apple-pass-field>
                             </div>
                             <div class="col-xs-2 text-center pass-label"><i class="fa fa-3x fa-fw {{ $ctrl.transitType }}"></i></div>
                             <div class="col-xs-5 text-right">
-                                <pk-apple-pass-field field="$ctrl.fields.primaryFields[1]" lang="$ctrl.selectedLanguage"></pk-apple-pass-field>
+                                <pk-apple-pass-field field="$ctrl.fields.primaryFields[1]" lang="$ctrl.selectedLanguage" length="2"></pk-apple-pass-field>
                             </div>
                         </div>
                         <!--Coupon, Store Card-->
                         <div data-ng-if="$ctrl.display.type == 'coupon' || $ctrl.display.type == 'storeCard'" class="primary row primary-strip">
-                            <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></pk-apple-pass-field>
+                            <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage" length="1"></pk-apple-pass-field>
                         </div>
                         <!--Event Tickets with a strip image (text needs to be smaller than above due to thinner strip image)-->
                         <div data-ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; $ctrl.eventIsStripFormat" class="primary row primary-strip">
-                            <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></pk-apple-pass-field>
+                            <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage" length="1"></pk-apple-pass-field>
                         </div>
                         <!--Event Ticket with a background image-->
                         <div data-ng-if="$ctrl.display.type == 'eventTicket' &amp;&amp; !$ctrl.eventIsStripFormat" class="primary row">
                             <div class="col-xs-9">
                                 <div class="primary row">
-                                    <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></pk-apple-pass-field>
+                                    <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage" length="1"></pk-apple-pass-field>
                                 </div>
                                 <div class="secondary row">
                                     <pk-apple-pass-field-group fields="$ctrl.fields.secondaryFields" lang="$ctrl.selectedLanguage"></pk-apple-pass-field-group>
@@ -87,13 +87,13 @@
                         <div data-ng-if="$ctrl.display.type == 'generic'" class="primary row">
                             <div data-ng-if="$ctrl.images.thumbnail || $ctrl.selectedLanguage.images.thumbnail">
                                 <div class="col-xs-8">
-                                    <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></pk-apple-pass-field>
+                                    <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage" length="1"></pk-apple-pass-field>
                                 </div>
                                 <div class="col-xs-4"><img data-ng-src="{{ $ctrl.images.thumbnail || $ctrl.selectedLanguage.images.thumbnail }}"/></div>
                             </div>
                             <div data-ng-if="!($ctrl.images.thumbnail || $ctrl.selectedLanguage.images.thumbnail)">
                                 <div class="col-xs-12">
-                                    <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage"></pk-apple-pass-field>
+                                    <pk-apple-pass-field field="$ctrl.fields.primaryFields[0]" lang="$ctrl.selectedLanguage" length="1"></pk-apple-pass-field>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                             <div data-ng-if="!$ctrl.barcodeIsSquare()" class="row">
                                 <div class="col-xs-1"></div>
                                 <div data-ng-if="!$ctrl.noAppleBarcode" class="col-xs-10 barcodeContainer">
-                                    <img ng-src="https://d1ye292yvr7tf6.cloudfront.net/images/barcode.php?m={{$ctrl.queryEncode($ctrl.barcode.message)}}&amp;f={{$ctrl.barcode.format}}&e=UTF-8&x2=1" class="barcode rect"/>
+                                    <img ng-src="https://bc.passkit.com/images/barcode.php?m={{$ctrl.queryEncode($ctrl.barcode.message)}}&amp;f={{$ctrl.barcode.format}}&e=UTF-8&x2=1" class="barcode rect"/>
                                     <div ng-show="!$ctrl.passIsExpired" class="text text-center">{{ $ctrl.barcode.altText }}</div>
                                     <div ng-show="$ctrl.passIsExpired" class="text text-center text-muted">this pass has expired</div>
                                     <div ng-if="!$ctrl.barcode.altText &amp;&amp; !$ctrl.passIsExpired" class="paddingInsteadOfAltText"></div>
@@ -153,7 +153,7 @@
                             <div data-ng-if="$ctrl.barcodeIsSquare()" class="row">
                                 <div class="col-xs-3"></div>
                                 <div data-ng-if="!$ctrl.noAppleBarcode" class="col-xs-6 barcodeContainer">
-                                    <img ng-src="https://d1ye292yvr7tf6.cloudfront.net/images/barcode.php?m={{$ctrl.queryEncode($ctrl.barcode.message)}}&amp;f={{$ctrl.barcode.format}}&e=UTF-8&x2=1" class="barcode square"/>
+                                    <img ng-src="https://bc.passkit.com/images/barcode.php?m={{$ctrl.queryEncode($ctrl.barcode.message)}}&amp;f={{$ctrl.barcode.format}}&e=UTF-8&x2=1" class="barcode square"/>
                                     <div ng-show="!$ctrl.passIsExpired" class="text text-center">{{ $ctrl.barcode.altText }}</div>
                                     <div ng-show="$ctrl.passIsExpired" class="text text-center text-muted">this pass has expired</div>
                                     <div ng-if="!$ctrl.barcode.altText &amp;&amp; !$ctrl.passIsExpired" class="paddingInsteadOfAltText"></div>

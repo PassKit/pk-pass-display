@@ -38,6 +38,16 @@
                 };
             }
 
+            if (field !== null && field !== undefined && field.hasOwnProperty('key') && field.key.startsWith('p') &&
+                ctrl !== null && ctrl !== undefined && ctrl.hasOwnProperty('length') && ctrl.length === 1 &&
+                field.hasOwnProperty('value') && field.value.length > 6) {
+
+                return {
+                    'font-size': "42px"
+                };
+
+            }
+
             return {};
         }
 
