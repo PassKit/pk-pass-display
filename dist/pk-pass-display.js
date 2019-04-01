@@ -212,34 +212,6 @@
         }
     }
 })(window.angular, window.moment);
-(function (angular) {
-    angular.module('pk-pass-display').component('pkApplePassFieldGroup', {
-        controller: [PKApplePassFieldGroupController],
-        template:'<div class="row field-group" ng-if="$ctrl.type == \'header\'" data-ng-repeat="field in $ctrl.fields.slice().reverse() track by $index" data-ng-style="{width: $ctrl.width}"><pk-apple-pass-field field="field" lang="$ctrl.lang" length="$ctrl.fields.length"></pk-apple-pass-field></div><div class="row field-group" ng-if="$ctrl.type != \'header\'" data-ng-repeat="field in $ctrl.fields track by $index" data-ng-style="{width: $ctrl.width}"><pk-apple-pass-field field="field" lang="$ctrl.lang" length="$ctrl.fields.length"></pk-apple-pass-field></div>',
-        bindings: {
-            fields: '<',
-            lang: '<',
-            type: '@'
-        }
-    });
-
-    function PKApplePassFieldGroupController() {
-        var ctrl = this;
-    
-        ctrl.$onChanges = onChanges;
-
-        //Scope vars
-        ctrl.width = "100%";
-
-        function onChanges(changesObj) {
-            if (changesObj.hasOwnProperty("fields") && ctrl.fields != undefined) {
-                if(ctrl.fields != null) {
-                    ctrl.width = Math.floor(100/ctrl.fields.length) + "%";
-                }
-            }
-        }
-    }
-})(window.angular);
 (function (angular, moment) {
     angular.module('pk-pass-display').component('pkApplePassField', {
         controller: ["$sce", "$element", PKApplePassFieldController],
@@ -412,3 +384,31 @@
         }
     }
 })(window.angular, window.moment);
+(function (angular) {
+    angular.module('pk-pass-display').component('pkApplePassFieldGroup', {
+        controller: [PKApplePassFieldGroupController],
+        template:'<div class="row field-group" ng-if="$ctrl.type == \'header\'" data-ng-repeat="field in $ctrl.fields.slice().reverse() track by $index" data-ng-style="{width: $ctrl.width}"><pk-apple-pass-field field="field" lang="$ctrl.lang" length="$ctrl.fields.length"></pk-apple-pass-field></div><div class="row field-group" ng-if="$ctrl.type != \'header\'" data-ng-repeat="field in $ctrl.fields track by $index" data-ng-style="{width: $ctrl.width}"><pk-apple-pass-field field="field" lang="$ctrl.lang" length="$ctrl.fields.length"></pk-apple-pass-field></div>',
+        bindings: {
+            fields: '<',
+            lang: '<',
+            type: '@'
+        }
+    });
+
+    function PKApplePassFieldGroupController() {
+        var ctrl = this;
+    
+        ctrl.$onChanges = onChanges;
+
+        //Scope vars
+        ctrl.width = "100%";
+
+        function onChanges(changesObj) {
+            if (changesObj.hasOwnProperty("fields") && ctrl.fields != undefined) {
+                if(ctrl.fields != null) {
+                    ctrl.width = Math.floor(100/ctrl.fields.length) + "%";
+                }
+            }
+        }
+    }
+})(window.angular);
