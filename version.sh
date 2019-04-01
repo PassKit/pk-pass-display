@@ -20,6 +20,6 @@ gulp
 echo "adding any changed dist files to commit"
 git add -A
 if ! git diff-index --quiet HEAD --; then
-    git commit -q --no-edit
+    git commit -q --no-edit -m $npm_package_version
 fi
 echo "preversion script finished"
