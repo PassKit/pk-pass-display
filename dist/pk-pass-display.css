@@ -84,6 +84,8 @@ pk-apple-pass {
             width: 500px; }
           pk-apple-pass #appleDisplay .barcodeRow .text-center {
             text-align: center !important; }
+        pk-apple-pass #appleDisplay .logo img {
+          height: 100px !important; }
         pk-apple-pass #appleDisplay .col-xs-1,
         pk-apple-pass #appleDisplay .col-xs-2,
         pk-apple-pass #appleDisplay .col-xs-3,
