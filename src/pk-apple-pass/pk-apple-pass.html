@@ -136,7 +136,7 @@
                         </div>
                     </div>
                     <!--Barcode Section... Actually pretty straightforward-->
-                    <div class="barcode-section barcodeRow text-center">
+                    <div class="barcode-section barcodeRow text-center no-print">
                         <!--Footer image for transport pass-->
                         <img class="footer" data-ng-src="{{ $ctrl.images.footer || $ctrl.selectedLanguage.images.footer }}">
                         <div ng-class="{expired:$ctrl.passIsExpired}" data-ng-if="$ctrl.barcode">
@@ -181,6 +181,26 @@
                     <div data-ng-repeat="field in $ctrl.fields.backFields" class="back-field row">
                         <pk-apple-pass-field field="field" lang="$ctrl.selectedLanguage" class="col-xs-12"></pk-apple-pass-field>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="displayHide text-center barcode-section barcodeRow">
+        <div ng-class="{expired:$ctrl.passIsExpired}" data-ng-if="$ctrl.barcode">
+            <div data-ng-if="!$ctrl.barcodeIsSquare()" class="row">
+                <div data-ng-if="!$ctrl.noAppleBarcode" class="col-xs-offset-1 col-xs-10 barcodeContainer text-center">
+                    <img ng-src="https://d1ye292yvr7tf6.cloudfront.net/images/barcode.php?m={{$ctrl.queryEncode($ctrl.barcode.message)}}&amp;f={{$ctrl.barcode.format}}&e=UTF-8&x2=1" class="barcode rect"/>
+                    <div ng-show="!$ctrl.passIsExpired" class="text text-center">{{ $ctrl.barcode.altText }}</div>
+                    <div ng-show="$ctrl.passIsExpired" class="text text-center text-muted">this pass has expired</div>
+                    <div ng-if="!$ctrl.barcode.altText &amp;&amp; !$ctrl.passIsExpired" class="paddingInsteadOfAltText"></div>
+                </div>
+            </div>
+            <div data-ng-if="$ctrl.barcodeIsSquare()" class="row">
+                <div data-ng-if="!$ctrl.noAppleBarcode" class="col-xs-offset-3 col-xs-6 barcodeContainer text-center">
+                    <img ng-src="https://d1ye292yvr7tf6.cloudfront.net/images/barcode.php?m={{$ctrl.queryEncode($ctrl.barcode.message)}}&amp;f={{$ctrl.barcode.format}}&e=UTF-8&x2=1" class="barcode square"/>
+                    <div ng-show="!$ctrl.passIsExpired" class="text text-center">{{ $ctrl.barcode.altText }}</div>
+                    <div ng-show="$ctrl.passIsExpired" class="text text-center text-muted">this pass has expired</div>
+                    <div ng-if="!$ctrl.barcode.altText &amp;&amp; !$ctrl.passIsExpired" class="paddingInsteadOfAltText"></div>
                 </div>
             </div>
         </div>

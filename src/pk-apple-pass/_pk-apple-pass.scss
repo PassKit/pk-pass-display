@@ -6,11 +6,6 @@
     a {
         cursor: pointer;
     }
-    @media print {
-        .no-print {
-            display:none !important;
-        }
-    }
     .row {
         margin:0 !important;
     }
@@ -19,6 +14,9 @@
     }
 
     @media print {
+        .no-print {
+            display:none !important;
+        }
         width: 100% !important;
         .displayHide {
             display: block !important;
@@ -54,20 +52,22 @@
                 overflow: initial !important;
             }
         }
-        .barcode-section{
-            .barcodeRow {
-                position:relative !important;
-                /*
-                .barcode.square {
-                    height:300px;
-                    width:auto;
-                }
-                .barcode.rect {
-                    height:auto;
-                    width:500px;
-                }
-                */
+        .barcodeRow {
+            position:relative !important;
+            .barcode.square {
+                height:300px;
+                width:auto;
             }
+            .barcode.rect {
+                height:auto;
+                width:500px;
+            }
+            .text-center {
+                text-align: center !important;
+            }
+        }
+        .logo img {
+            height: 100px !important;
         }
         .col-xs-1,
         .col-xs-2,
