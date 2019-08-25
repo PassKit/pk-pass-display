@@ -39,9 +39,6 @@ pk-apple-pass {
     perspective: 600px; }
     pk-apple-pass #appleDisplay a {
       cursor: pointer; }
-    @media print {
-      pk-apple-pass #appleDisplay .no-print {
-        display: none !important; } }
     pk-apple-pass #appleDisplay .row {
       margin: 0 !important; }
     pk-apple-pass #appleDisplay img {
@@ -49,6 +46,8 @@ pk-apple-pass {
     @media print {
       pk-apple-pass #appleDisplay {
         width: 100% !important; }
+        pk-apple-pass #appleDisplay .no-print {
+          display: none !important; }
         pk-apple-pass #appleDisplay .displayHide {
           display: block !important; }
         pk-apple-pass #appleDisplay .content-inner {
@@ -75,18 +74,16 @@ pk-apple-pass {
             text-overflow: initial !important;
             white-space: normal !important;
             overflow: initial !important; }
-        pk-apple-pass #appleDisplay .barcode-section .barcodeRow {
-          position: relative !important;
-          /*
-                .barcode.square {
-                    height:300px;
-                    width:auto;
-                }
-                .barcode.rect {
-                    height:auto;
-                    width:500px;
-                }
-                */ }
+        pk-apple-pass #appleDisplay .barcodeRow {
+          position: relative !important; }
+          pk-apple-pass #appleDisplay .barcodeRow .barcode.square {
+            height: 300px;
+            width: auto; }
+          pk-apple-pass #appleDisplay .barcodeRow .barcode.rect {
+            height: auto;
+            width: 500px; }
+          pk-apple-pass #appleDisplay .barcodeRow .text-center {
+            text-align: center !important; }
         pk-apple-pass #appleDisplay .col-xs-1,
         pk-apple-pass #appleDisplay .col-xs-2,
         pk-apple-pass #appleDisplay .col-xs-3,
