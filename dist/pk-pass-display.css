@@ -267,7 +267,7 @@ pk-apple-pass {
           display: block;
           margin-right: 10px; }
           pk-apple-pass #appleDisplay .content .front .pass-header .image img {
-            max-height: 40px;
+            max-height: 50px;
             width: auto; }
         pk-apple-pass #appleDisplay .content .front .pass-header .logo .pass-value {
           display: block;
