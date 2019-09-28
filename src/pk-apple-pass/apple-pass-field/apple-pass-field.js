@@ -142,7 +142,7 @@
         function numberFormat(value, format) {
             switch(format) {
             case 'percent':
-                return value+"%";
+                return (value * 100) +"%";
             default:
                 return value;
             }
