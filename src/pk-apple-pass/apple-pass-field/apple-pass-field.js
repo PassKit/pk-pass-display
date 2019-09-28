@@ -43,7 +43,7 @@
                 field.hasOwnProperty('value') && field.value.length > 6) {
 
                 return {
-                    'font-size': "42px"
+                    'font-size': "26px"
                 };
 
             }
