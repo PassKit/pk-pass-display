@@ -23,7 +23,7 @@
     "autoprefixer": "^6.4.1",
     "del": "^2.2.2",
     "eslint": "^3.9.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-angular-embed-templates": "^2.3.0",
     "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.6.0",
